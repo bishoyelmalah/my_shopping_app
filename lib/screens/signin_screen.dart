@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -85,6 +86,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           content: Text("Logged in Successfully"),
                           backgroundColor: Colors.green,
                         ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
                       );
                     }
                   },

@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
             children: [
               Text(
                 "AliMama",
-                style: TextStyle(fontSize: 50, color: Colors.grey[200]),
+                style: TextStyle(fontSize: 50, color: Colors.deepOrange),
               ),
               SizedBox(height: 50),
               Row(

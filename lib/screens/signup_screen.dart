@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -9,6 +10,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  String? pass;
 
   @override
   Widget build(BuildContext context) {
@@ -43,12 +45,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
-                              decoration: InputDecoration(labelText: "Email"),
+                              decoration: InputDecoration(
+                                labelText: "Full Name",
+                              ),
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "This field is requird";
-                                } else if (!value.contains("@")) {
-                                  return "Email must have @ in it";
+                                } else if (!(value[0] ==
+                                    value[0].toUpperCase())) {
+                                  return "First Letter must be uppercase";
                                 }
                                 return null;
                               },
@@ -58,14 +63,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             padding: const EdgeInsets.all(8.0),
                             child: TextFormField(
                               obscureText: true,
+                              decoration: InputDecoration(labelText: "Email"),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "This field is requird";
+                                } else if (!value.contains("@")) {
+                                  return "Email must have @";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
                               decoration: InputDecoration(
                                 labelText: "Password",
                               ),
+                              onChanged: (value) => pass = value,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return "This field is requird";
                                 } else if (value.length < 6) {
-                                  return "Password must be 6 characters at least";
+                                  return "Password must be at least 6 characters";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                labelText: "Confirm Password",
+                              ),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return "This field is requird";
+                                } else if (value != pass) {
+                                  return "Password doesn't match";
                                 }
                                 return null;
                               },
@@ -85,6 +121,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           content: Text("Logged in Successfully"),
                           backgroundColor: Colors.green,
                         ),
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
                       );
                     }
                   },

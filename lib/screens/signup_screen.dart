@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import '../utils/page_transitions.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -122,9 +123,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           backgroundColor: Colors.green,
                         ),
                       );
-                      Navigator.push(
+                      FadeTransitionHelper.navigateWithFade(
                         context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        HomeScreen(),
                       );
                     }
                   },
